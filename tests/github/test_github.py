@@ -2,9 +2,10 @@ from io import BytesIO, TextIOWrapper
 
 from ciscript.github import Job, Step, Workflow
 from ciscript.yaml import export
+from tests.conftest import Regressions
 
 
-def test_basic() -> None:
+def test_basic(data_regression: Regressions) -> None:
     workflow = Workflow(
         on="push",
         jobs={
@@ -21,14 +22,5 @@ def test_basic() -> None:
 
     file.seek(0)
 
-    expected = """\
-    jobs:
-      test:
-        name: test-ubuntu
-        runs_on: ubuntu-latest
-        steps:
-        - id: run pytest
-          run: pytest -v
-    'on': push
-    """
-    assert file.read() == expected
+    got = file.read()
+    data_regression.check(got)

@@ -7,12 +7,12 @@ name: CI/CD
 jobs:
   lint:
     name: Run Linters
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
-      with_:
+      with:
         python-version: ${{ matrix.python-version }}
     - name: Install and configure Poetry
       uses: snok/intall-poetry@v1.3.1
@@ -29,12 +29,12 @@ jobs:
         - '3.10'
   test:
     name: Run Tests
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
-      with_:
+      with:
         python-version: ${{ matrix.python-version }}
     - name: Install and configure Poetry
       uses: snok/intall-poetry@v1.3.1
