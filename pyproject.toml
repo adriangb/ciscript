@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "ciscript"
+version = "0.1.0"
+description = ""
+authors = ["Adrian Garcia Badaracco <dev@adriangb.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4"
+pydantic = ">=1.10.2"
+PyYAML = ">=6.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.20.0"
+pytest-cov = "^4.0.0"
+coverage = "^6.5.0"
+black = "^22.10.0"
+ruff = "^0.0.127"
+mypy = "^0.991"
+isort = "^5.10.1"
+pytest-regressions = "^2.4.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+
+[tool.coverage.run]
+branch = true
+source = ["src", "tests"]
+dynamic_context = "test_function"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    '\.\.\.',
+    "raise NotImplementedError",
+    "TYPE_CHECKING",
+    "__repr__",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+files = "src/**/*.py,tests/**/*.py"
+show_error_codes = true
+pretty = true
+warn_unreachable = true
+strict = true
+
+[tool.ruff]
+ignore = ["E501"]
