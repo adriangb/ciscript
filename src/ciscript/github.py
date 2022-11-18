@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-from typing import Annotated, Any, Dict, List, Literal, Optional, TypedDict, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseConfig, BaseModel, Extra, Field
+
+from ciscript._typing import Annotated, Literal, TypedDict
 
 
 class CustomBaseModel(BaseModel):

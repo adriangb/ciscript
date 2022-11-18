@@ -2,7 +2,7 @@ from io import BytesIO, TextIOWrapper
 
 from ciscript.github import Job, Step, Workflow
 from ciscript.yaml import export
-from tests.conftest import Regressions
+from tests.utils import Regressions
 
 
 def test_basic(data_regression: Regressions) -> None:

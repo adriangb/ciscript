@@ -1,4 +1,6 @@
-from typing import Any, Protocol
+from typing import Any
+
+from ciscript._typing import Protocol
 
 
 class Regressions(Protocol):
