@@ -1,0 +1,27 @@
+name: CI/CD
+'on':
+  pull_request: {}
+  push:
+    branches:
+    - main
+jobs:
+  lint:
+    name: Run Linters
+    runs_on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with_:
+        python-version: ${{ matrix.python-version }}
+    - name: Install and configure Poetry
+      uses: snok/intall-poetry@v1.3.1
+    - name: Lint
+      run: make lint
+    strategy:
+      matrix:
+        python:
+        - '3.7'
+        - '3.8'
+        - '3.9'
+        - '3.10'
