@@ -11,7 +11,9 @@ PYTHON_MATRIX_STRATEGY = Strategy(
     matrix={
         "python": [
             f"3.{minor}"
-            for minor in range(OLDEST_PYTHON_MINOR_VERSION, LATEST_PYTHON_MINOR_VERSION)
+            for minor in range(
+                OLDEST_PYTHON_MINOR_VERSION, LATEST_PYTHON_MINOR_VERSION + 1
+            )
         ]
     }
 )
