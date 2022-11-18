@@ -8,7 +8,7 @@ authors = ["Adrian Garcia Badaracco <dev@adriangb.com>"]
 python = ">=3.7,<4"
 pydantic = ">=1.10.2"
 PyYAML = ">=6.0"
-typing-extensions = { version = ">=4.4.0", python = "<3.9"}
+typing-extensions = { version = ">=4.4.0", python = "<3.10"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.2.0"
