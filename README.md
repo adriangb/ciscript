@@ -14,3 +14,8 @@ This repo dogfeeds itself. The way I set it up here is:
 - [].pre-commit-config.yaml](].pre-commit-config.yaml) runs [.github/workflows/export.py](.github/workflows/export.py) on every commit to make sure [.github/workflows/workflow.yaml](.github/workflows/workflow.yaml) is laways up to date and you don't have to remember to run anything if you change the workflow.
 
 That's it!
+
+## Future
+
+This is just an experiment for now.
+I think it would be really interesting to write in TypeScript, that's probably the best language for boilerplate free declarative templating like this.
