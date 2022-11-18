@@ -26,7 +26,7 @@ SETUP_STEPS = [
     ),
     Step(
         name="Install and configure Poetry",
-        uses="snok/intall-poetry@v1.3.1",
+        uses="snok/install-poetry@v1",
     ),
     Step(name="Setup project", run="make init"),
 ]
