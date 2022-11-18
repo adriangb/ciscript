@@ -11,7 +11,7 @@ You create a source code file (currently only Python) and then export that to a 
 This repo dogfeeds itself. The way I set it up here is:
 
 - [.github/workflows/export.py](.github/workflows/export.py) contains the workflow definition.
-- [].pre-commit-config.yaml](].pre-commit-config.yaml) runs [.github/workflows/export.py](.github/workflows/export.py) on every commit to make sure [.github/workflows/workflow.yaml](.github/workflows/workflow.yaml) is laways up to date and you don't have to remember to run anything if you change the workflow.
+- [.pre-commit-config.yaml](].pre-commit-config.yaml) runs [.github/workflows/export.py](.github/workflows/export.py) on every commit to make sure [.github/workflows/workflow.yaml](.github/workflows/workflow.yaml) is laways up to date and you don't have to remember to run anything if you change the workflow.
 
 That's it!
 
