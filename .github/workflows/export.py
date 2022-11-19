@@ -67,6 +67,7 @@ workflow = gha.Workflow(
             name="🚀 PyPi Release 📦",
             runs_on="ubuntu-latest",
             needs=["test", "lint"],
+            if_="${{ github.ref == 'refs/heads/main' }}",
             steps=[
                 *SETUP_PROJECT,
                 gha.Step(
