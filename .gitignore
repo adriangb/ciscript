@@ -1,0 +1,12 @@
+/*
+!/src
+!/.github
+!/tests
+!/.pre-commit-config.yaml
+!/Makefile
+!/pyproject.toml
+!/README.md
+!/.gitignore
+
+*.pyc
+*/__pycache__
