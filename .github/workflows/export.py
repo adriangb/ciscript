@@ -73,7 +73,8 @@ workflow = gha.Workflow(
                 gha.Step(
                     name="PyPi release",
                     id="pypi",
-                    run="""PACKAGE_VERSION=$(poetry version -s)
+                    run="""\
+                    PACKAGE_VERSION=$(poetry version -s)
                     echo "package_version=$PACKAGE_VERSION" >> $GITHUB_ENV
                     printf "\nSee this release on GitHub: [v$PACKAGE_VERSION](https://github.com/$GITHUB_REPOSITORY/releases/tag/$PACKAGE_VERSION)\n" >> README.md
                     poetry config pypi-token.pypi "${{ secrets.PYPI_TOKEN }}"

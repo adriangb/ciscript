@@ -1,2 +1,0 @@
-"'on': push\njobs:\n  test:\n    name: test-ubuntu\n    runs-on: ubuntu-latest\n \
-  \   steps:\n    - id: run pytest\n      run: pytest -v\n"

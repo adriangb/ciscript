@@ -1,0 +1,13 @@
+'on': push
+jobs:
+  test:
+    name: test-ubuntu
+    runs-on: ubuntu-latest
+    steps:
+    - id: run pytest
+      run: |-
+        apt-get install -y build-essential && \
+            pytest -v
+        echo "\"
+        '
+        '"

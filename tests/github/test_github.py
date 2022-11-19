@@ -5,14 +5,25 @@ from ciscript.yaml import export
 from tests.utils import Regressions
 
 
-def test_basic(data_regression: Regressions) -> None:
+def test_basic(file_regression: Regressions) -> None:
     workflow = Workflow(
         on="push",
         jobs={
             "test": Job(
                 name="test-ubuntu",
                 runs_on="ubuntu-latest",
-                steps=[Step(id="run pytest", run="pytest -v")],
+                steps=[
+                    Step(
+                        id="run pytest",
+                        # check how we manipulate multiline strings with
+                        # quotes and escaping
+                        run="""\
+                        apt-get install -y build-essential && \\
+                            pytest -v
+                        echo "\\"\n'\n'"
+                        """,
+                    )
+                ],
             )
         },
     )
@@ -23,4 +34,4 @@ def test_basic(data_regression: Regressions) -> None:
     file.seek(0)
 
     got = file.read()
-    data_regression.check(got)
+    file_regression.check(got)

@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseConfig, BaseModel, Extra, Field, validator
 
 from ciscript._typing import Annotated, Literal, TypedDict
+from ciscript._utils import dedent_escape_and_quote_aware
 
 
 class CustomBaseModel(BaseModel):
@@ -450,6 +451,10 @@ class Step(CustomBaseModel):
         ),
     ] = None
     """The maximum number of minutes to run the step before killing the process."""
+
+    @validator("run")
+    def cleanup_multiline_run(cls, value: str) -> str:
+        return dedent_escape_and_quote_aware(value)
 
 
 class BranchProtectionRuleEvent(CustomBaseModel):

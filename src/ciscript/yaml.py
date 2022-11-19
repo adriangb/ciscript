@@ -8,9 +8,8 @@ from yaml import Dumper, SafeDumper, dump_all  # type: ignore
 def str_presenter(dumper: Dumper, data: str) -> Any:
     """configures yaml for dumping multiline strings
     Ref: https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data"""
-    if data.count("\n") > 0:  # check for multiline string
-        data = "\n".join([line.strip() for line in data.split("\n")])
-        data = data.strip()
+    data = data.rstrip()
+    if data.count("\n") > 0:
         return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")  # type: ignore
     return dumper.represent_scalar("tag:yaml.org,2002:str", data)  # type: ignore
 
