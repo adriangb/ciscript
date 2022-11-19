@@ -3,6 +3,12 @@ from __future__ import annotations
 from typing import List
 
 
+def remove_prefix(text: str, prefix: str) -> str:
+    if text.startswith(prefix):
+        return text[len(prefix) :]
+    return text
+
+
 def dedent_escape_and_quote_aware(value: str) -> str:
     stack: List[str] = []
     splits: List[int] = []
@@ -21,15 +27,17 @@ def dedent_escape_and_quote_aware(value: str) -> str:
     if not splits:
         return value
     lines: List[str] = []
-    prefix = len(value)
+    whitespace_prefix_length = len(value)
     for from_idx, to_idx in zip((-1, *splits), splits):
         line = value[from_idx + 1 : to_idx]
-        idx = prefix
+        idx = whitespace_prefix_length
         for idx, c in enumerate(line):
-            if c != " " or idx > prefix:
+            if c != " " or idx > whitespace_prefix_length:
                 break
-        prefix = min(idx, prefix)
+        whitespace_prefix_length = min(idx, whitespace_prefix_length)
     for from_idx, to_idx in zip((-1, *splits), (*splits, len(value))):
-        lines.append(value[from_idx + 1 : to_idx].removeprefix(prefix * " "))
+        lines.append(
+            remove_prefix(value[from_idx + 1 : to_idx], whitespace_prefix_length * " ")
+        )
     value = "\n".join(lines)
     return value
