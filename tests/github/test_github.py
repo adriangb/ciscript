@@ -34,4 +34,4 @@ def test_basic(file_regression: Regressions) -> None:
     file.seek(0)
 
     got = file.read()
-    file_regression.check(got)
+    file_regression.check(got, extension=".yaml")
