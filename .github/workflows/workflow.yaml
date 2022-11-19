@@ -4,6 +4,9 @@ name: CI/CD
   push:
     branches:
     - main
+defaults:
+  run:
+    shell: bash
 jobs:
   lint:
     name: Run Linters
@@ -43,6 +46,47 @@ jobs:
       run: make init
     - name: Test
       run: make test
+    strategy:
+      matrix:
+        python:
+        - '3.7'
+        - '3.8'
+        - '3.9'
+        - '3.10'
+        - '3.11'
+  pypi:
+    name: 🚀 PyPi Release 📦
+    needs:
+    - test
+    - lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install and configure Poetry
+      uses: snok/install-poetry@v1
+    - name: Setup project
+      run: make init
+    - id: pypi
+      name: PyPi release
+      run: |-
+        PACKAGE_VERSION=$(poetry version -s)
+        echo "package_version=$PACKAGE_VERSION" >> $GITHUB_ENV
+        printf "
+        See this release on GitHub: [v$PACKAGE_VERSION](https://github.com/$GITHUB_REPOSITORY/releases/tag/$PACKAGE_VERSION)
+        " >> README.md
+        poetry config pypi-token.pypi "${{ secrets.PYPI_TOKEN }}"
+        poetry publish --build
+    - if: steps.pypi.outcome == 'success'
+      name: GitHub release
+      uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ env.package_version }}
+        generateReleaseNotes: 'True'
     strategy:
       matrix:
         python:

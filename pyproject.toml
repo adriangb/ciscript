@@ -53,6 +53,7 @@ show_error_codes = true
 pretty = true
 warn_unreachable = true
 strict = true
+warn_unused_ignores = false
 
 [tool.ruff]
 ignore = ["E501"]
