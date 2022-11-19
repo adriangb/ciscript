@@ -67,7 +67,6 @@ workflow = gha.Workflow(
             name="🚀 PyPi Release 📦",
             runs_on="ubuntu-latest",
             needs=["test", "lint"],
-            strategy=PYTHON_MATRIX_STRATEGY,
             steps=[
                 *SETUP_PROJECT,
                 gha.Step(
